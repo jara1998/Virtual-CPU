@@ -1,0 +1,20 @@
+module #(parameter addrLen = 26) signEx(a, b);
+	input logic [addrLen - 1: 0] a;
+	output logic [63: 0] b;
+	assign b = {{(64 - addrLen){a[addrLen - 1]}}, a}
+	
+endmodule
+
+module signEx_tb();
+	logic [15:0] a;
+	logic [63:0] b;
+	
+	signEx dut (.a, .b)
+	
+	initial begin
+		a <= 16'b1011111111111111; #10
+		b <= 16'b0011111111111111; #10
+	end
+	
+endmodule
+	

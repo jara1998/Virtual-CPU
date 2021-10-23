@@ -1,0 +1,15 @@
+`timescale 1ns/10ps
+module datapath (instru, BrTaken, UncondBr, overflow, zero, negative, cout, 
+						Reg2Loc, RegWrite, MemWrite, MemToReg, ALUOp, ALUSrc,
+						ZEout, read_en, IsMOVZ, xfer_size, clk, reset);
+						
+	input logic [31:0] instru;
+	output logic overflow, zero, negative, cout;
+	input logic BrTaken, UncondBr, Reg2Loc, RegWrite, MemWrite, MemToReg, ZEout, read_en, IsMOVZ;
+	input logic [3:0] xfer_size;
+	input logic [1:0] ALUSrc;
+	input logic [2:0] ALUOp;
+	
+	
+	
+endmodule

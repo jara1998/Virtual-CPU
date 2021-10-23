@@ -1,0 +1,31 @@
+module regfile (ReadData1, ReadData2, WriteData, 
+					 ReadRegister1, ReadRegister2, WriteRegister,
+					 RegWrite, clk);
+					 
+	input logic [4:0] WriteRegister, ReadRegister1, ReadRegister2;
+	input logic RegWrite, clk;
+	input logic [63:0] WriteData;
+	output logic [63:0] ReadData1, ReadData2;
+	
+	logic [31:0] dec_out;
+	
+	decoder5_32 dec (.in(WriteRegister), .out(dec_out), .en(RegWrite));
+	
+	assign regOut[31] = 0; // X31 = 0
+	
+	logic [31:0][63:0] register_out;
+	
+	// write data
+	genvar i;
+	generate 
+		
+		for (i = 0; i < 31; i++) begin:
+			dff_64 dff64 (.q(register_out[i][63:0]), .d(WriteData[63:0]), .reset(1'b0), .clk(clk), .en(dec_out[i]));
+		end
+	endgenerate
+
+	// read data
+	// two 64bit 32:1 MUXes, use ReadRegister1, 2 to read ReadData1, 2
+	// your code
+	
+endmodule

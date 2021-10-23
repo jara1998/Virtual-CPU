@@ -1,0 +1,73 @@
+module fetchInstr (instru, BrTaken, UncondBr, clk, reset);
+	input logic BrTaken, UncondBr, clk, reset;
+	output logic [31:0] instru;
+	logic [63:0] currPC, nextPC, muxOut, Br_out, noBr_out, ex_CondAddr, ex_BrAddr, shifted_Br, uncondBr_out;
+	
+	
+	instructmem instruMem (.address(currPC), .instruction(instru), .clk);
+	
+	
+	// no brTaken path
+	alu adder1 (.A(64'd4), .B(currPC), .cntrl(3'b010), .result(noBr_out)); // can I ignore useless parameters
+	
+	
+	// brTaken path
+	signEx #(parameter addrLen = 19)  SE (.a(instru[23:5]), .b(ex_CondAddr));
+	signEx #(parameter addrLen = 26)  SE (.a(instru[25:0]), .b(ex_BrAddr));
+	// uncondBr mux
+	mux2_1 UncondBrChoose (.out(uncondBr_out), .i0(ex_CondAddr), .i1(ex_BrAddr), .sel(UncondBr));
+	// shifter
+	shifter superShifter (.value(uncondBr_out), .direction(1'b0), .distance(6'b000010), .result(shifted_Br));
+	alu adder2 (.A(shifted_Br), .B(currPC), .cntrl(3'b010), .result(Br_out)); // can I ignore useless parameters
+	
+	
+
+	// BrTaken mux
+	mux2_1 BrTakenChoose (.out(muxOut), .i0(noBr_out), .i1(Br_out), .sel(BrTaken));
+	D_FF64 programCounter (.q(muxOut), .d(currPC), .reset, .clk);
+	
+
+endmodule
+
+module fetchInstru_tb();
+	logic BrTaken, UncondBr, clk, reset;
+	logic [31:0] instru;
+	
+	fetchInstr dut (.instru, .BrTaken, .UncondBr, .clk, .reset);
+	
+	parameter CLOCK_PERIOD= 10000;
+	
+	initial begin
+		clk <= 0;
+		forever #(CLOCK_PERIOD / 2) clk <= ~clk;
+	end
+	
+	integer i;
+	always_comb begin
+		if (instruction[31:26] == 6'b000101) begin
+			UncondBr = 1'b1;
+			BrTaken = 1'b1;
+		end
+		
+		else if (instruction[31:24] == 8'b01010100 || instruction[31:24] == 8'b10110100 || instruction[31:24] == 8'b10110101) begin
+			UncondBr = 1'b0;
+			BrTaken = 1'b1;
+		end
+		
+		else begin
+			UncondBr = 1'b0;
+			BrTaken = 1'b0;
+		end
+	end
+	initial begin
+		reset <= 1'b1;
+		@(posedge clk);
+		reset <= 1'b0;
+		for(i = 0; i < 200; i++) begin
+			@(posedge clk);
+		end
+		$stop;
+	end
+endmodule
+	
+	

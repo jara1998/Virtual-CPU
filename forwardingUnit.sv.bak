@@ -1,0 +1,6 @@
+module forwardingUnit (Aa_ID, Ab_ID, Aw_EX, Aw_MEM, ALUSrc_a, ALUSrc_b);
+	input logic [4:0] Aa_ID, Ab_ID, Aw_EX, Aw_MEM;
+	output logic [1:0] ALUSrc_a, ALUSrc_b;
+	
+	
+endmodule

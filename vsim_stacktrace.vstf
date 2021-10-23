@@ -1,0 +1,78 @@
+# Current time Thu Oct 15 19:43:56 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x00780196: '<unknown (@0x780196)>'
+# 1    0xfdf90ed3: 'C:/Users/nn/Desktop/xsm/Lab1_files/dff_64.sv:19'
+# End of Stack Trace
+
+
+# Current time Thu Oct 15 19:55:09 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x00780196: '<unknown (@0x780196)>'
+# 1    0xfdf90ed3: 'C:/Users/nn/Desktop/xsm/Lab1_files/dff_64.sv:19'
+# End of Stack Trace
+
+
+# Current time Fri Oct 16 03:00:22 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x6e1f45ac: '<unknown (@0x6e1f45ac)>'
+# End of Stack Trace
+
+
+# Current time Fri Oct 16 03:22:09 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x00780196: '<unknown (@0x780196)>'
+# 1    0xfdf906cf: 'D:/xsm/Lab1_files/dff_64.sv:19'
+# End of Stack Trace
+
+
+# Current time Fri Oct 16 09:27:01 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x52a045ac: 'memccpy + 0xbc' in 'c:\windows\system32\msvcr120.dll'
+# 1    0x0077cabd: '<unknown (@0x77cabd)>'
+# 2    0xfdf8466f: 'D:/xsm/Lab1_files/dff_64.sv:19'
+# End of Stack Trace
+
+
+# Current time Fri Oct 16 09:37:10 2020
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "10.5b"
+# Version = "2016.10"
+# Date = "Oct  5 2016"
+# Platform = win32pe
+# Signature = a4da31216fa3031746f0a74423efc007
+# 0    0x00780196: '<unknown (@0x780196)>'
+# 1    0xfdf847a5: 'D:/xsm/Lab1_files/dff_64.sv:19'
+# End of Stack Trace
+
+

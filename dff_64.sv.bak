@@ -1,0 +1,36 @@
+module D_FF (q, d, reset, clk);
+ output reg q;
+ input d, reset, clk;
+ always_ff @(posedge clk)
+ if (reset)
+ q <= 0; // On reset, set to 0
+ else
+ q <= d; // Otherwise out = d
+endmodule 
+
+module D_FF64 (q, d, reset, clk);
+ output logic [63:0] q;
+ input logic [63:0] d;
+ input logic reset, clk;
+ always_ff @(posedge clk)
+ if (!reset)
+	 genvar i;
+	 generate
+	 for(i=0; i<64; i++) begin : eachDff
+	 D_FF dff (.q(q[i]), .d(d[i]), .reset, .clk);
+	 end
+	 endgenerate 
+endmodule 
+
+module D_FF64_testbench();
+logic [63:0] q;
+logic [63:0] d;
+logic reset;
+logic clk;
+parameter PERIOD = 100; // period = length of clock
+ // Make the clock LONG to test
+initial begin
+ clk <= 0;
+ forever #(PERIOD/2) clk = ~clk;
+end 
+endmodule

@@ -1,0 +1,2 @@
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (10281): Verilog HDL Declaration information at ALU.sv(4): object "A" differs only in case from object "a" in the same scope File: D:/jara/course/Lab 4/ALU.sv Line: 4

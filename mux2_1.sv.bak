@@ -1,0 +1,30 @@
+module mux2_1(out, i0, i1, sel);
+ output logic [63:0]out;
+ input logic [63:0] i0, i1;
+ input logic sel;
+ logic nsel;
+ not(nsel,sel);
+ logic [63:0] long,nlong;
+ assign long = sel*64'hffffffffffffffff;
+ assign nlong = nsel*64'hffffffffffffffff;
+ assign out = (long & i1)  + (nlong & i0);
+endmodule
+
+module mux2_1_testbench();
+ logic [63:0]out;
+ logic [63:0] i0, i1;
+ logic sel;
+
+ mux2_1 dut (.out, .i0, .i1, .sel);
+
+ initial begin
+ sel=0; i0=64'b0; i1=64'b0; #10;
+ sel=0; i0=64'b0; i1=64'b1; #10;
+ sel=0; i0=64'd171; i1=64'b0; #10;
+ sel=0; i0=64'd3; i1=64'd1; #10;
+ sel=1; i0=64'b0; i1=64'd200; #10;
+ sel=1; i0=64'b0; i1=64'd151; #10;
+ sel=1; i0=64'b1; i1=64'd90; #10;
+ sel=1; i0=64'b1; i1=64'd1; #10;
+ end
+endmodule 

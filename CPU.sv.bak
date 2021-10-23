@@ -1,0 +1,17 @@
+`timescale 1ns/10ps
+module CPU (clk, reset);
+	input logic clk, reset;
+	
+	logic [31:0] instru;
+	logic BrTaken, UncondBr, overflow, zero, negative, cout, Reg2Loc, RegWrite, MemWrite, MemToReg;
+	logic ALUSrc;
+	logic [2:0] ALUOp;
+	
+	fetchInstru (.instru, .BrTaken, .UncondBr, .clk, .reset);
+	
+	// need control module
+	
+	// need datapath module
+	
+
+endmodule

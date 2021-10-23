@@ -1,0 +1,13 @@
+module fulladder(A,B,Cin,sum,Cout);
+input logic A,B,Cin;
+output logic sum,Cout;
+logic temp1,temp2,temp3;
+xor x1 (temp1,A,B);
+xor x2 (out,temp1,Cin);
+and a1 (A,B,temp2);
+and a2 (temp3,temp1,Cin);
+or o1 (Cout,temp2,temp3);
+
+endmodule
+
+

@@ -1,0 +1,13 @@
+module bit_ALU(S0,S1,A,B,Cin,Cout,out);
+ input logic A,B,S0,S1,Cin;
+ output logic Cout,out;
+ logic sum;
+ logic nB,Bin,AND,OR;
+
+ not #50 (nB,B);
+ mux2to1_bit m1 (.out(Bin), .i0(B), .i1(nB), .sel(S0));
+ fulladder fa (.A(A),.B(Bin),.Cin(Cin),.sum(sum),.Cout(Cout));
+ and #50 (AND,A,B);
+ or #50 (OR,A,B);
+ mux4to1_bit m2(.out(out), .i00(sum), .i01(sum), .i10(AND), .i11(OR), .sel0(S0), .sel1(S1));
+endmodule 
